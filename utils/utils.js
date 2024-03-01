@@ -40,3 +40,18 @@ export async function getCoordinates() {
         }
     });
 }
+
+/**
+ * 만료 n분 전 확인
+ * @param {string} date - Date 객체 String으로 된 것
+ * @param {number} minute - n분 전인지 확인
+ */
+export function isExpiredIn(date, minute) {
+    const expirationDate = new Date(date);
+    const now = new Date();
+
+    const diff = expirationDate - now;
+    const minutesInMilliseconds = minute * 60 * 1000;
+
+    return diff <= minutesInMilliseconds;
+}
